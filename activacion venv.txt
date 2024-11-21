@@ -1,0 +1,7 @@
+Windows
+source <carpeta entorno virtual>/Scripts/activate
+. <carpeta entorno virtual>/Scripts/activate
+
+Linux/Mac
+source <carpeta entorno virtual>/bin/activate
+. <carpeta entorno virtual>/bin/activate
