@@ -7,7 +7,10 @@ from inicio.models import Auto
 import random
 
 def bienvenida(request):
-    return HttpResponse('<h1>Bienvenida!</h1>')
+    return render(request, 'inicio/bienvenida.html')
+
+def inicio(request):
+    return render(request, 'inicio/inicio.html')
 
 def fecha_y_hora(request):
     fecha_y_hora = datetime.now()
@@ -46,7 +49,7 @@ def mi_template(request):
     
     # return HttpResponse(template_renderizado)
 
-    return render(request, 'mi_template.html', {'nombre': 'Ricardo'})
+    return render(request, 'inicio/mi_template.html', {'nombre': 'Ricardo'})
 
 
 def mi_template2(request):
@@ -58,12 +61,12 @@ def mi_template2(request):
     
     # return HttpResponse(template_renderizado)
 
-    return render(request, 'mi_template2.html', {})
+    return render(request, 'inicio/mi_template2.html', {})
 
 
 def condicionales_y_bucles(request):
     
-    return render(request, 'condicionales_y_bucles.html', {
+    return render(request, 'inicio/condicionales_y_bucles.html', {
         'nombre': 'Ricardo',
         'mis_elementos': [],
         'numero': 2,
@@ -71,9 +74,10 @@ def condicionales_y_bucles(request):
     })
     
     
-def crear_auto(request):
+def crear_auto(request, marca, modelo, anio):
     
-    auto = Auto(marca=random.choice(['Ford','Fiat','Chevrolet','Ferrari','Mercedes']), modelo='Generico', anio=random.choice([2020,2021,2022,2023,2024])) 
+    # auto = Auto(marca=random.choice(['Ford','Fiat','Chevrolet','Ferrari','Mercedes']), modelo='Generico', anio=random.choice([2020,2021,2022,2023,2024])) 
+    auto = Auto(marca=marca, modelo=modelo, anio=anio) 
     auto.save()
     
-    return render(request, 'auto_creacion_correcta.html', {})
+    return render(request, 'inicio/auto_creacion_correcta.html', {'auto': auto})

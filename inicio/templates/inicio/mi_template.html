@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Mi template
+{% endblock title_head %}
+{% comment %} {% block header %}Pepito{% endblock header %} {% endcomment %}
+{% block h1_header %}Mi template{% endblock h1_header %}
+
+{% block main %}
+<h1>Hola soy el Html de mi template!</h1>
+<p>Esto es un parrafo!</p>
+<p>Nombre: {{nombre}}</p>
+{% endblock main %}

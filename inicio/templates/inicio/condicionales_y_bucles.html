@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+
+{% extends "base.html" %}
+
+{% block title_head %}
+Mi template
+{% endblock title_head %}\
+{% block h1_header %}Condiccionales y bucles{% endblock h1_header %}
+
+{% block main %}
+
+<p>
+    {{nombre}}
+</p>
+
+{% if mis_elementos %}
+<p>Mis elementos tiene valores</p>
+{% else %}
+<p>Mis elementos no tiene valores</p>
+{% endif %}
+
+{% if numeros|length > 10 %}
+<ul>
+    {% for numero in numeros %}
+    <li>
+        {{numero}}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock main %}
