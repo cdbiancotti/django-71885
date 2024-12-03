@@ -11,5 +11,6 @@ urlpatterns = [
     path('mi-template/', mi_template, name='mi_template'),
     path('mi-template2/', mi_template2, name='mi_template2'),
     path('condicionales-y-bucles/', condicionales_y_bucles, name='condicionales_y_bucles'),
-    path('crear-auto/<str:marca>/<str:modelo>/<int:anio>/', crear_auto, name='crear_auto'),
+    # path('crear-auto/<str:marca>/<str:modelo>/<int:anio>/', crear_auto, name='crear_auto'),
+    path('autos/crear/', crear_auto, name='crear_auto')
 ]

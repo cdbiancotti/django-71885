@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.template import Template, Context, loader
 from inicio.models import Auto
 import random
+from inicio.forms import CrearAuto
 
 def bienvenida(request):
     return render(request, 'inicio/bienvenida.html')
@@ -74,10 +75,32 @@ def condicionales_y_bucles(request):
     })
     
     
-def crear_auto(request, marca, modelo, anio):
+# def crear_auto(request, marca, modelo, anio):
     
-    # auto = Auto(marca=random.choice(['Ford','Fiat','Chevrolet','Ferrari','Mercedes']), modelo='Generico', anio=random.choice([2020,2021,2022,2023,2024])) 
-    auto = Auto(marca=marca, modelo=modelo, anio=anio) 
-    auto.save()
+#     # auto = Auto(marca=random.choice(['Ford','Fiat','Chevrolet','Ferrari','Mercedes']), modelo='Generico', anio=random.choice([2020,2021,2022,2023,2024])) 
+#     auto = Auto(marca=marca, modelo=modelo, anio=anio) 
+#     auto.save()
     
-    return render(request, 'inicio/auto_creacion_correcta.html', {'auto': auto})
+#     return render(request, 'inicio/auto_creacion_correcta.html', {'auto': auto})
+
+def crear_auto(request):
+    print('******************************************************')
+    print('Request', request)
+    print('GET', request.GET)
+    print('POST', request.POST)
+    print('******************************************************')
+    
+    formulario = CrearAuto()
+    
+    if request.method == 'POST':
+        formulario = CrearAuto(request.POST)
+        if formulario.is_valid():
+            
+            data = formulario.cleaned_data
+            
+            auto = Auto(marca=data.get('marca'), modelo=data.get('modelo'), anio=data.get('anio'))
+            auto.save()
+            
+            return render(request, 'inicio/inicio.html')
+    
+    return render(request, 'inicio/crear_auto.html', {'formulario': formulario})
