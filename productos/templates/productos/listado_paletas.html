@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Paletas
+{% endblock title_head %}
+{% block h1_header %}Listado de paletas{% endblock h1_header %}
+
+{% block main %}
+{% comment %} 
+<a href={% url "inicio:crear_auto" %}>Crear paleta</a>
+
+<p>
+    <form action={% url "inicio:listado_autos" %}>
+        
+        {{formulario}}
+    
+        <input type="submit" value='Buscar'>
+    
+    </form>
+</p> {% endcomment %}
+
+{% if listado_paletas %}
+<ul>
+    {% for paleta in listado_paletas %}
+    <li>
+        {{paleta}}
+        {% comment %} | <a href={% url 'inicio:ver_auto' auto.id %}>Ver</a>
+        | <a href={% url 'inicio:editar_auto' auto.id %}>Editar</a>
+        | <a href={% url 'inicio:eliminar_auto' auto.id %}>Eliminar</a> {% endcomment %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encuentran paletas.</p>
+{% endif %}
+{% endblock main %}
