@@ -6,6 +6,7 @@ from django.template import Template, Context, loader
 from inicio.models import Auto
 import random
 from inicio.forms import CrearAuto, BuscarAuto, EditarAuto
+from django.contrib.auth.decorators import login_required
 
 def bienvenida(request):
     return render(request, 'inicio/bienvenida.html')
@@ -138,7 +139,7 @@ def ver_auto(request, id_auto):
     
     return render(request, 'inicio/ver_auto.html', {'auto': auto})
 
-
+@login_required
 def eliminar_auto(request, id_auto):
     
     auto = Auto.objects.get(id=id_auto)
@@ -147,6 +148,7 @@ def eliminar_auto(request, id_auto):
     
     return render(request, 'inicio/eliminar_auto.html', {'auto': auto})
 
+@login_required
 def editar_auto(request, id_auto):
     
     auto = Auto.objects.get(id=id_auto)

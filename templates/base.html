@@ -27,7 +27,20 @@
                 <a class="navbar-brand" href={% url "inicio:inicio" %}>Inicio</a>
                 <a class="navbar-brand" href={% url "inicio:listado_autos" %}>Autos</a>
                 <a class="navbar-brand" href={% url "productos:listado_paletas" %}>Paletas</a>
-                {% comment %} <a class="btn btn-primary" href="#signup">Sign Up</a> {% endcomment %}
+
+                {% if request.user.is_authenticated %}
+                    <a class="navbar-brand" href="#">{{request.user.username}}</a>
+                    <form action={% url "usuarios:cerrar_sesion" %} method='post'>
+                        {% csrf_token %}
+                        
+                        <button class="btn btn-danger">Cerrar sesion</button>
+                        
+                    </form>
+                    
+                {% else %}
+                <a class="btn btn-primary" href={% url "usuarios:iniciar_sesion" %}>Iniciar sesion</a>
+                <a class="btn btn-secondary" href="#">Registrarse</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->
