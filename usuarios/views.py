@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth import login as django_login
 from django.contrib.auth.views import LogoutView
-from usuarios.forms import RegistroDeUsuario, EditarPerfil
+from usuarios.forms import RegistroDeUsuario, EditarPerfil, NuestroCambiarContrasenia
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -53,7 +53,7 @@ def editar_perfil(request):
     
     info_usuario = request.user.infousuario
     
-    formulario = EditarPerfil(instance=request.user)
+    formulario = EditarPerfil(initial={'avatar': info_usuario.avatar}, instance=request.user)
     
     if request.method == 'POST':
         formulario = EditarPerfil(request.POST, request.FILES, instance=request.user)
@@ -69,5 +69,6 @@ def editar_perfil(request):
     return render(request, 'usuarios/editar_perfil.html', {'form': formulario})
 
 class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):
+    form_class = NuestroCambiarContrasenia
     template_name = 'usuarios/cambiar_contrasenia.html'
     success_url = reverse_lazy('usuarios:perfil')

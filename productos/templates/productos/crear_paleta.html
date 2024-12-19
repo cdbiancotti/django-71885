@@ -5,7 +5,7 @@ Crear Paleta
 {% block h1_header %}Crear Paleta{% endblock h1_header %}
 
 {% block main %}
-<form action={% url "productos:crear_paleta" %} method="post">
+<form action={% url "productos:crear_paleta" %} method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
     {{form}}

@@ -5,7 +5,7 @@ Editar Paleta
 {% block h1_header %}Editar Paleta{% endblock h1_header %}
 
 {% block main %}
-<form action={% url "productos:editar_paleta" paleta.id %} method="post">
+<form action={% url "productos:editar_paleta" paleta.id %} method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
     {{form}}

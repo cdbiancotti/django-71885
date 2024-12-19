@@ -10,6 +10,11 @@ Perfil
     <li>Nombre: {{request.user.first_name}}</li>
     <li>Apellido: {{request.user.last_name}}</li>
     <li>Email: {{request.user.email}}</li>
+    <li>Avatar:
+    {% if request.user.infousuario.avatar %}
+         <img src={{request.user.infousuario.avatar.url}} alt="Imagen del avatar" height="200px">
+    {% endif %}
+    </li>
 </ul>
 <p>
     <a href={% url "usuarios:editar_perfil" %}>Editar Datos</a>
