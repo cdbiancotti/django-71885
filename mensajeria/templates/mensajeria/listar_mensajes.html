@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Mensajes
+{% endblock title_head %}
+{% block h1_header %}Mensajes{% endblock h1_header %}
+
+{% block main %}
+
+<a href={% url "mensajeria:enviar_mensaje" %}>Enviar Mensaje</a>
+
+{% if todos_los_mensajes %}
+<ul>
+    {% for mensaje in todos_los_mensajes %}
+    <li>
+        <a href={% url "mensajeria:ver_mensaje" mensaje.id %}>{{mensaje}}</a>
+        {% comment %} | <a href={% url 'inicio:ver_auto' auto.id %}>Ver</a>
+        | <a href={% url 'inicio:editar_auto' auto.id %}>Editar</a>
+        | <a href={% url 'inicio:eliminar_auto' auto.id %}>Eliminar</a> {% endcomment %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encuentran mensajes.</p>
+{% endif %}
+{% endblock main %}

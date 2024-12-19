@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title_head %}
+Mensaje
+{% endblock title_head %}
+{% block h1_header %}Mensaje{% endblock h1_header %}
+
+{% block main %}
+
+<ul>
+    <li>Emisor: {{mensaje.emisor}}</li>
+    <li>Receptor: {{mensaje.receptor}}</li>
+    <li>Fecha: {{mensaje.fecha}}</li>
+    <li>Mensaje: {{mensaje.mensaje}}</li>
+</ul>
+
+{% endblock main %}
